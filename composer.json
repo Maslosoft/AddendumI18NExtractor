@@ -1,5 +1,5 @@
 {
-    "name": "Piotr/addendum-i18n-extractor",
+    "name": "maslosoft/addendum-i18n-extractor",
     "description": "This utility extract i18n labels, descriptions etc.",
     "require": {
         "maslosoft/miniview": "*",
