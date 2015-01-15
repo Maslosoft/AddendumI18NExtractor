@@ -1,0 +1,24 @@
+{
+    "name": "Piotr/addendum-i18n-extractor",
+    "description": "This utility extract i18n labels, descriptions etc.",
+    "require": {
+        "maslosoft/miniview": "*",
+        "maslosoft/addendum": "*"
+    },
+    "require-dev": {
+        "maslosoft/hedron": "*"
+    },
+	"autoload": {
+		"psr-4": {
+			"Maslosoft\\AddendumI18NExtractor\\": "src"
+		}
+	},
+    "license": "New BSD",
+    "authors": [
+        {
+            "name": "Peter Maselkowski",
+            "email": "pmaselkowski@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
