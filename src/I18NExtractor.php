@@ -2,7 +2,8 @@
 
 namespace Maslosoft\AddendumI18NExtractor;
 
-use Maslosoft\Addendum\Helpers\MiniView;
+use Maslosoft\Addendum\Utilities\AnnotationUtility;
+use Maslosoft\MiniView\MiniView;
 use Yii;
 
 /**
