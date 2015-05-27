@@ -3,8 +3,13 @@
     "description": "This utility extract i18n labels, descriptions etc.",
     "require": {
         "maslosoft/miniview": "*",
-        "maslosoft/addendum": "*"
+        "maslosoft/addendum": "*",
+        "maslosoft/sitcom": "*",
+        "symfony/console": "*"
     },
+	 "bin": [
+		 "i18n-extractor"
+	 ],
     "require-dev": {
         "maslosoft/hedron": "*"
     },
