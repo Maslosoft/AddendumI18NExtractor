@@ -1,10 +1,11 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d3c8f58e4a8f997e23b0ff5c9da2431c",
+    "hash": "6b86e130bfdd60bf15e885773caeba29",
+    "content-hash": "2cf415f1d10040d617db5467e58e2416",
     "packages": [
         {
             "name": "maslosoft/addendum",
@@ -16,7 +17,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maslosoft/Addendum/zipball/25716e8ff255d4f072baf09d777269680c55c84f",
+                "url": "https://api.github.com/repos/Maslosoft/Addendum/zipball/94fb86227f0a3ecb7378a0dd15ba7701995e99e1",
                 "reference": "25716e8ff255d4f072baf09d777269680c55c84f",
                 "shasum": ""
             },
@@ -63,6 +64,58 @@
             "time": "2015-05-14 14:34:35"
         },
         {
+            "name": "maslosoft/cli-shared",
+            "version": "0.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Maslosoft/CLIShared.git",
+                "reference": "ac5d8ee95d766f28d0403473028ed143b3dfcceb",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Maslosoft/CLIShared/zipball/ac5d8ee95d766f28d0403473028ed143b3dfcceb",
+                "reference": "ac5d8ee95d766f28d0403473028ed143b3dfcceb",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "symfony/yaml": "^2.6"
+            },
+            "require-dev": {
+                "maslosoft/hedron": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Maslosoft\\Cli\\Shared\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL",
+                "Commercial"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Maselkowski",
+                    "email": "pmaselkowski@gmail.com"
+                }
+            ],
+            "description": "Shared CLI application components",
+            "time": "2015-06-19 13:11:28"
+        },
+        {
             "name": "maslosoft/embedi",
             "version": "dev-master",
             "source": {
@@ -72,7 +125,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maslosoft/EmbeDi/zipball/01b89acb44e50fefa8152066892a35498e5a21d1",
+                "url": "https://api.github.com/repos/Maslosoft/EmbeDi/zipball/43d06b8bef5304a97194d1a8220328ce35ba699e",
                 "reference": "01b89acb44e50fefa8152066892a35498e5a21d1",
                 "shasum": ""
             },
@@ -113,7 +166,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maslosoft/Gazebo/zipball/d178e194398c37a623dda4c1bfe1c88261cfeb93",
+                "url": "https://api.github.com/repos/Maslosoft/Gazebo/zipball/3951a688d57e2845729450b6f5a9104157e2744e",
                 "reference": "d178e194398c37a623dda4c1bfe1c88261cfeb93",
                 "shasum": ""
             },
@@ -155,7 +208,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maslosoft/MiniView/zipball/22b0a287c286377747440a98318e0d5343414bb4",
+                "url": "https://api.github.com/repos/Maslosoft/MiniView/zipball/c11f6ae98eefcc0d48844e1b2f79d871fcce8baa",
                 "reference": "22b0a287c286377747440a98318e0d5343414bb4",
                 "shasum": ""
             },
@@ -249,7 +302,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maslosoft/Sitcom/zipball/d28c5952cd63c665af11d07df1736611b06f438b",
+                "url": "https://api.github.com/repos/Maslosoft/Sitcom/zipball/d08bcba3c63e8493f5327a162a68eef0f46fab8e",
                 "reference": "d28c5952cd63c665af11d07df1736611b06f438b",
                 "shasum": ""
             },
@@ -284,6 +337,60 @@
             "time": "2015-03-19 17:42:37"
         },
         {
+            "name": "maslosoft/whitelist",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Maslosoft/Whitelist.git",
+                "reference": "9cfbb347fa0dd834acdb6d8345992f09a0022f72",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Maslosoft/Whitelist/zipball/9cfbb347fa0dd834acdb6d8345992f09a0022f72",
+                "reference": "9cfbb347fa0dd834acdb6d8345992f09a0022f72",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "maslosoft/cli-shared": "*",
+                "maslosoft/embedi": "*"
+            },
+            "require-dev": {
+                "codeception/codeception": "^2.1",
+                "maslosoft/hedron": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Maslosoft\\Whitelist\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL",
+                "Commercial"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Maselkowski",
+                    "email": "pmaselkowski@gmail.com"
+                }
+            ],
+            "description": "PHP Code whitelister",
+            "time": "2016-01-28 11:12:47"
+        },
+        {
             "name": "psr/log",
             "version": "dev-master",
             "source": {
@@ -293,7 +400,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/bf2c13de4300e227d7b2fd08027673a79c519987",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/d8e60a5619fff77f9669da8997697443ef1a1d7e",
                 "reference": "bf2c13de4300e227d7b2fd08027673a79c519987",
                 "shasum": ""
             },
@@ -331,12 +438,12 @@
             "version": "2.8.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Console.git",
-                "reference": "7e857a2b52b5833ed27d78a6b1b846bd440ee8bd"
+                "url": "https://github.com/symfony/console.git",
+                "reference": "243285dbcb6e812ec0faaca37202c64859b1f691"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/7e857a2b52b5833ed27d78a6b1b846bd440ee8bd",
+                "url": "https://api.github.com/repos/symfony/console/zipball/243285dbcb6e812ec0faaca37202c64859b1f691",
                 "reference": "7e857a2b52b5833ed27d78a6b1b846bd440ee8bd",
                 "shasum": ""
             },
@@ -382,6 +489,55 @@
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
             "time": "2015-05-15 14:11:12"
+        },
+        {
+            "name": "symfony/yaml",
+            "version": "2.8.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "ccbaef96e6595df28d040f6bb18d946e574badf8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/ccbaef96e6595df28d040f6bb18d946e574badf8",
+                "reference": "2396832f6f9ab2b8f62f00b5d3f2e722fc773d65",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "~2.7|~3.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Yaml\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Yaml Component",
+            "homepage": "https://symfony.com",
+            "time": "2015-05-12 15:16:46"
         }
     ],
     "packages-dev": [
@@ -395,7 +551,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maslosoft/Hedron/zipball/ac5567f2f5adb44c18e1d6d61cd2bcd2c30c7fba",
+                "url": "https://api.github.com/repos/Maslosoft/Hedron/zipball/9d7c16ee4346636188bc3f31d9cd56e96cf16fcd",
                 "reference": "ac5567f2f5adb44c18e1d6d61cd2bcd2c30c7fba",
                 "shasum": ""
             },
@@ -502,7 +658,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/a923bb15680d0089e2316f7a4af8f437046e96bb",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/6150bf2c35d3fc379e50c7602b75caceaa39dbf0",
                 "reference": "a923bb15680d0089e2316f7a4af8f437046e96bb",
                 "shasum": ""
             },
@@ -593,7 +749,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/eab81d02569310739373308137284e0158424330",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/cab6c6fefee93d7b7c3a01292a0fe0884ea66644",
                 "reference": "eab81d02569310739373308137284e0158424330",
                 "shasum": ""
             },
@@ -642,7 +798,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/5a8c7d31914337b69923db26c4221b81ff5a196e",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/6e7133793a8e5a5714a551a8324337374be209df",
                 "reference": "5a8c7d31914337b69923db26c4221b81ff5a196e",
                 "shasum": ""
             },
@@ -722,12 +878,12 @@
             "version": "2.8.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Finder.git",
-                "reference": "fd26bdbb67bc8753884eff5767a4f1ee90e2284b"
+                "url": "https://github.com/symfony/finder.git",
+                "reference": "f0368180c46abb46f62f29d71287ac91daf2b9c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Finder/zipball/fd26bdbb67bc8753884eff5767a4f1ee90e2284b",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/f0368180c46abb46f62f29d71287ac91daf2b9c6",
                 "reference": "fd26bdbb67bc8753884eff5767a4f1ee90e2284b",
                 "shasum": ""
             },
@@ -765,55 +921,6 @@
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
             "time": "2015-05-15 14:11:12"
-        },
-        {
-            "name": "symfony/yaml",
-            "version": "2.8.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/Yaml.git",
-                "reference": "2396832f6f9ab2b8f62f00b5d3f2e722fc773d65"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/2396832f6f9ab2b8f62f00b5d3f2e722fc773d65",
-                "reference": "2396832f6f9ab2b8f62f00b5d3f2e722fc773d65",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.9"
-            },
-            "require-dev": {
-                "symfony/phpunit-bridge": "~2.7|~3.0.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.8-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Yaml\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Yaml Component",
-            "homepage": "https://symfony.com",
-            "time": "2015-05-12 15:16:46"
         },
         {
             "name": "zordius/lightncandy",

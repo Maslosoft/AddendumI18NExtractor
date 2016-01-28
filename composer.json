@@ -5,7 +5,8 @@
         "maslosoft/miniview": "*",
         "maslosoft/addendum": "*",
         "maslosoft/sitcom": "*",
-        "symfony/console": "*"
+        "symfony/console": "*",
+        "maslosoft/whitelist": "*"
     },
 	 "bin": [
 		 "i18n-extractor"
