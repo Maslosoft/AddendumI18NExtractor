@@ -4,6 +4,7 @@ namespace Maslosoft\AddendumI18NExtractor;
 
 use Maslosoft\Addendum\Addendum;
 use Maslosoft\Addendum\Utilities\AnnotationUtility;
+use Maslosoft\AddendumI18NExtractor\Helpers\Context;
 use Maslosoft\MiniView\MiniView;
 
 /**
@@ -14,13 +15,13 @@ use Maslosoft\MiniView\MiniView;
 class I18NExtractor
 {
 
-	private $file = [];
-
 	/**
 	 * View Renderer
 	 * @var MiniView
 	 */
 	public $view = null;
+	private $file = [];
+	private $searchPaths = [];
 
 	public function __construct()
 	{
@@ -29,9 +30,9 @@ class I18NExtractor
 
 	public function generate($searchPaths = [], $outputPath = null)
 	{
+		$this->searchPaths = $searchPaths;
 		$this->file[] = '<?php';
-
-		AnnotationUtility::fileWalker(Addendum::fly()->i18nAnnotations, [$this, 'walk'], $searchPaths);
+		AnnotationUtility::fileWalker(Addendum::fly()->i18nAnnotations, [$this, 'walk'], $this->searchPaths);
 		if (null === $outputPath)
 		{
 			$outputPath = 'autogen';
@@ -48,7 +49,6 @@ class I18NExtractor
 	public function walk($file)
 	{
 		$annotations = AnnotationUtility::rawAnnotate($file);
-		Helpers\Context::create($file);
 		foreach ($annotations['class'] as $type => $annotation)
 		{
 			$this->extract($type, $annotation, $file);
@@ -68,6 +68,7 @@ class I18NExtractor
 
 	public function extract($type, $annotation, $file, $name = null)
 	{
+		$context = Context::create($file, $this->searchPaths);
 		if (in_array($type, Addendum::fly()->i18nAnnotations))
 		{
 			foreach ($annotation as $values)
@@ -99,6 +100,7 @@ class I18NExtractor
 					'class' => $class,
 					'name' => $name,
 					'value' => $value,
+					'context' => $context,
 					'w' => $w
 						], true);
 			}
