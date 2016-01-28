@@ -48,7 +48,7 @@ class I18NExtractor
 	public function walk($file)
 	{
 		$annotations = AnnotationUtility::rawAnnotate($file);
-
+		Helpers\Context::create($file);
 		foreach ($annotations['class'] as $type => $annotation)
 		{
 			$this->extract($type, $annotation, $file);
