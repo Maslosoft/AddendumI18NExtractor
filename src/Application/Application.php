@@ -9,6 +9,7 @@
 namespace Maslosoft\AddendumI18NExtractor\Application;
 
 use Maslosoft\AddendumI18NExtractor\Application\Commands\ExtractCommand;
+use Maslosoft\AddendumI18NExtractor\Application\Commands\SignalExtractCommand;
 use Symfony\Component\Console\Application as ConsoleApplication;
 use Symfony\Component\Console\Command\Command;
 
@@ -53,6 +54,7 @@ LOGO;
 		$commands = parent::getDefaultCommands();
 
 		$commands[] = new ExtractCommand();
+		$commands[] = new SignalExtractCommand();
 
 		return $commands;
 	}

@@ -13,20 +13,34 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Maslosoft/Addendum.git",
-                "reference": "25716e8ff255d4f072baf09d777269680c55c84f"
+                "reference": "94fb86227f0a3ecb7378a0dd15ba7701995e99e1",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/Maslosoft/Addendum/zipball/94fb86227f0a3ecb7378a0dd15ba7701995e99e1",
-                "reference": "25716e8ff255d4f072baf09d777269680c55c84f",
-                "shasum": ""
+                "reference": "94fb86227f0a3ecb7378a0dd15ba7701995e99e1",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
+                "maslosoft/cache": "*",
+                "maslosoft/cli-shared": "*",
                 "maslosoft/embedi": "*",
                 "maslosoft/gazebo": "*",
                 "maslosoft/signals": "*",
                 "php": ">=5.5.0",
-                "psr/log": "~1.0"
+                "psr/log": "~1"
             },
             "require-dev": {
                 "maslosoft/addendumtest": "dev-master",
@@ -61,7 +75,60 @@
                 "annotations",
                 "metadata"
             ],
-            "time": "2015-05-14 14:34:35"
+            "time": "2016-01-21 14:39:08"
+        },
+        {
+            "name": "maslosoft/cache",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Maslosoft/Cache.git",
+                "reference": "e48501316d3a492483ef86aa3cffc367e87d78c5",
+                "mirrors": [
+                    {
+                        "url": "peter@pkg.maslosoft.com/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Maslosoft/Cache/zipball/e48501316d3a492483ef86aa3cffc367e87d78c5",
+                "reference": "e48501316d3a492483ef86aa3cffc367e87d78c5",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.home/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "maslosoft/embedi": "*"
+            },
+            "require-dev": {
+                "maslosoft/cachetest": "dev-master",
+                "maslosoft/hedron": "~1.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Maslosoft\\Cache\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL",
+                "Commercial"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Maselkowski",
+                    "email": "pmaselkowski@gmail.com"
+                }
+            ],
+            "description": "Easy to use, auto configurable, extensible cache provider",
+            "time": "2015-11-03 13:24:03"
         },
         {
             "name": "maslosoft/cli-shared",
@@ -488,7 +555,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2015-05-15 14:11:12"
+            "time": "2016-01-25 09:56:46"
         },
         {
             "name": "symfony/yaml",
@@ -537,7 +604,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2015-05-12 15:16:46"
+            "time": "2016-01-24 11:06:16"
         }
     ],
     "packages-dev": [
@@ -920,7 +987,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2015-05-15 14:11:12"
+            "time": "2016-01-27 05:14:19"
         },
         {
             "name": "zordius/lightncandy",
