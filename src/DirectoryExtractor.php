@@ -9,28 +9,19 @@
 namespace Maslosoft\AddendumI18NExtractor;
 
 use Maslosoft\AddendumI18NExtractor\Interfaces\ExtractorInterface;
-use Maslosoft\AddendumI18NExtractor\Signals\ExtractI18N;
-use Maslosoft\Signals\Signal;
 
 /**
- * ReceivingExtractor
+ * DirectoryExtractor
  *
  * @author Piotr Maselkowski <pmaselkowski at gmail.com>
  */
-class ReceivingExtractor implements ExtractorInterface
+class DirectoryExtractor implements ExtractorInterface
 {
 
-	public function extract()
+	public function extract($src = 'src', $dest = 'generated')
 	{
-		$signals = (new Signal)->emit(new ExtractI18N);
-
 		$extractor = new I18NExtractor();
-
-		foreach ($signals as $signal)
-		{
-			/* @var $signal ExtractI18N */
-			$extractor->generate($signal->srcPath, $signal->destPath);
-		}
+		$extractor->generate([$src], $dest);
 	}
 
 }

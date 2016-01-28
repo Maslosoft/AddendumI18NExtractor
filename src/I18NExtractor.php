@@ -2,9 +2,9 @@
 
 namespace Maslosoft\AddendumI18NExtractor;
 
+use Maslosoft\Addendum\Addendum;
 use Maslosoft\Addendum\Utilities\AnnotationUtility;
 use Maslosoft\MiniView\MiniView;
-use Yii;
 
 /**
  * This utility extract i18n labels, descriptions etc.
@@ -14,7 +14,7 @@ use Yii;
 class I18NExtractor
 {
 
-	private $_file = [];
+	private $file = [];
 
 	/**
 	 * View Renderer
@@ -27,24 +27,22 @@ class I18NExtractor
 		$this->view = new MiniView($this);
 	}
 
-	public function generate($searchAliases = [], $outputAlias = null)
+	public function generate($searchPaths = [], $outputPath = null)
 	{
-		$paths = [];
-		foreach ($searchAliases as $alias)
+		$this->file[] = '<?php';
+
+		AnnotationUtility::fileWalker(Addendum::fly()->i18nAnnotations, [$this, 'walk'], $searchPaths);
+		if (null === $outputPath)
 		{
-			$paths[] = Yii::getPathOfAlias($alias);
+			$outputPath = 'autogen';
 		}
-		$this->_file[] = '<?php';
-		AnnotationUtility::fileWalker(Yii::app()->addendum->i18nAnnotations, [$this, 'walk'], $paths);
-		if (null === $outputAlias)
-		{
-			file_put_contents(sprintf('%s/annotated-labels.php', Yii::getPathOfAlias('autogen')), implode("\n", $this->_file));
-		}
-		else
-		{
-			file_put_contents(sprintf('%s/annotated-labels.php', Yii::getPathOfAlias($outputAlias)), implode("\n", $this->_file));
-		}
-		return $this->_file;
+		$err = error_reporting(E_ERROR);
+		$mask = umask(0);
+		mkdir($outputPath, 0777, true);
+		umask($mask);
+		error_reporting($err);
+		file_put_contents(sprintf('%s/annotated-labels.php', $outputPath), implode("\n", $this->file));
+		return $this->file;
 	}
 
 	public function walk($file)
@@ -70,7 +68,7 @@ class I18NExtractor
 
 	public function extract($type, $annotation, $file, $name = null)
 	{
-		if (in_array($type, Yii::app()->addendum->i18nAnnotations))
+		if (in_array($type, Addendum::fly()->i18nAnnotations))
 		{
 			foreach ($annotation as $values)
 			{
@@ -96,7 +94,7 @@ class I18NExtractor
 				{
 					$w = '"';
 				}
-				$this->_file[] = $this->view->render('i18nEntity', [
+				$this->file[] = $this->view->render('i18nEntity', [
 					'alias' => $alias,
 					'class' => $class,
 					'name' => $name,
