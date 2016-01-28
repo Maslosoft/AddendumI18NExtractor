@@ -1,3 +1,1 @@
-<?php
-
-return 'dev';
+<?php return '0.0.2';
