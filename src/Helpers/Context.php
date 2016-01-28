@@ -16,10 +16,37 @@ namespace Maslosoft\AddendumI18NExtractor\Helpers;
 class Context
 {
 
-	public static function create($file)
+	/**
+	 * Create context based on file name
+	 * @param string $file
+	 * @param string[] $trimPaths
+	 * @return string
+	 */
+	public static function create($file, $trimPaths = [])
 	{
-		$cwd = getcwd();
-		var_dump($cwd);
+		// Replace windows slashes
+		$file = str_replace('\\', '/', $file);
+
+		// Get path without extension
+		$name = sprintf('%s/%s', dirname($file), basename($file, '.php'));
+
+		// Remove search paths in from of file path
+		foreach ($trimPaths as $path)
+		{
+			$pathQuoted = preg_quote($path);
+			$pattern = "~^$pathQuoted/~";
+			if (preg_match($pattern, $name))
+			{
+				$name = preg_replace($pattern, '', $name);
+			}
+		}
+
+		// Trim out any remaining slashed
+		$name = trim($name, '\\/');
+
+		// Convert to dots
+		$name = str_replace('/', '.', $name);
+		return $name;
 	}
 
 }
