@@ -4,7 +4,7 @@ namespace Maslosoft\AddendumI18NExtractor;
 
 use Maslosoft\Addendum\Addendum;
 use Maslosoft\Addendum\Utilities\AnnotationUtility;
-use Maslosoft\AddendumI18NExtractor\Helpers\Context;
+use Maslosoft\AddendumI18NExtractor\Helpers\ClassContext;
 use Maslosoft\MiniView\MiniView;
 
 /**
@@ -68,7 +68,7 @@ class I18NExtractor
 
 	public function extract($type, $annotation, $file, $name = null)
 	{
-		$context = Context::create($file, $this->searchPaths);
+		$context = ClassContext::create($file, $this->searchPaths);
 		if (in_array($type, Addendum::fly()->i18nAnnotations))
 		{
 			foreach ($annotation as $values)
