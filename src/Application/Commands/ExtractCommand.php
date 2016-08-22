@@ -2,13 +2,14 @@
 
 namespace Maslosoft\AddendumI18NExtractor\Application\Commands;
 
+use Maslosoft\Addendum\Interfaces\AnnotatedInterface;
 use Maslosoft\AddendumI18NExtractor\DirectoryExtractor;
 use Maslosoft\Sitcom\Command;
 use Symfony\Component\Console\Command\Command as ConsoleCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class ExtractCommand extends ConsoleCommand
+class ExtractCommand extends ConsoleCommand implements AnnotatedInterface
 {
 
 	protected function configure()
