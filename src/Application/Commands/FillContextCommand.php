@@ -2,13 +2,14 @@
 
 namespace Maslosoft\AddendumI18NExtractor\Application\Commands;
 
+use Maslosoft\Addendum\Interfaces\AnnotatedInterface;
 use Maslosoft\AddendumI18NExtractor\DirectoryContextFiller;
 use Maslosoft\Sitcom\Command;
 use Symfony\Component\Console\Command\Command as ConsoleCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class FillContextCommand extends ConsoleCommand
+class FillContextCommand extends ConsoleCommand implements AnnotatedInterface
 {
 
 	protected function configure()
