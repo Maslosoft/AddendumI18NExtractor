@@ -15,6 +15,8 @@ namespace Maslosoft\AddendumI18NExtractor;
 use Maslosoft\Addendum\Addendum;
 use Maslosoft\Addendum\Utilities\AnnotationUtility;
 use Maslosoft\AddendumI18NExtractor\Helpers\ClassContext;
+use Maslosoft\Cli\Shared\ConfigReader;
+use Maslosoft\EmbeDi\EmbeDi;
 use Maslosoft\MiniView\MiniView;
 
 /**
@@ -26,23 +28,41 @@ class I18NExtractor
 {
 
 	/**
+	 * Config file name
+	 */
+	const ConfigName = "i18n-extractor";
+
+	/**
 	 * View Renderer
 	 * @var MiniView
 	 */
 	public $view = null;
+
+	public $i18nAnnotations = [
+		'Label',
+		'Description',
+		'Hint'
+	];
+
 	private $file = [];
 	private $searchPaths = [];
 
-	public function __construct()
+	public function __construct($configName = self::ConfigName)
 	{
 		$this->view = new MiniView($this);
+
+		$config = new ConfigReader($configName);
+		$this->di = EmbeDi::fly($configName);
+		$this->di->configure($this);
+		$this->di->apply($config->toArray(), $this);
+
 	}
 
 	public function generate($searchPaths = [], $outputPath = null)
 	{
 		$this->searchPaths = $searchPaths;
 		$this->file[] = '<?php';
-		AnnotationUtility::fileWalker(Addendum::fly()->i18nAnnotations, [$this, 'walk'], $this->searchPaths);
+		AnnotationUtility::fileWalker($this->i18nAnnotations, [$this, 'walk'], $this->searchPaths);
 		if (null === $outputPath)
 		{
 			$outputPath = 'autogen';
@@ -79,7 +99,7 @@ class I18NExtractor
 	public function extract($type, $annotation, $file, $name = null)
 	{
 		$context = ClassContext::create($file, $this->searchPaths);
-		if (in_array($type, Addendum::fly()->i18nAnnotations))
+		if (in_array($type, $this->i18nAnnotations))
 		{
 			foreach ($annotation as $values)
 			{
