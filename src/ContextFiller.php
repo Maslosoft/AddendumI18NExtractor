@@ -8,10 +8,18 @@
 
 namespace Maslosoft\AddendumI18NExtractor;
 
+use function file;
+use function file_put_contents;
+use function implode;
+use Maslosoft\AddendumI18NExtractor\Helpers\ClassContext;
 use Maslosoft\AddendumI18NExtractor\Helpers\Context;
 use Maslosoft\AddendumI18NExtractor\Helpers\FileWalker;
 use Maslosoft\AddendumI18NExtractor\Interfaces\FillerInterface;
+use Maslosoft\Whitelist\Interfaces\TokenInterface;
 use Maslosoft\Whitelist\Tokenizer\Tokenizer;
+use Maslosoft\Whitelist\Tokenizer\Tokens\Token;
+use const PHP_EOL;
+use function str_replace;
 
 /**
  * ContextFiller
@@ -44,11 +52,12 @@ class ContextFiller implements FillerInterface
 		// Context param position is value (index starting at 0)
 		$txFunctions = [
 			'tx' => 1,
-			'txp' => 2,
+//			'txp' => 2,
 			'ntx' => 2,
-			'ntxp' => 3
+//			'ntxp' => 3
 		];
 		$txCalls = [];
+		/* @var $txCalls[] TokenInterface */
 		foreach ($functions as $function)
 		{
 			if (in_array($function->value, array_keys($txFunctions)))
@@ -61,9 +70,13 @@ class ContextFiller implements FillerInterface
 			return;
 		}
 		$lines = file($file);
+		$write = false;
 		foreach ($txCalls as $txCall)
 		{
-			$line = trim($lines[$txCall->line - 1]);
+			/* @var $txCall TokenInterface|Token */
+			/* @var $msgToken TokenInterface|Token */
+			$fileLine = $txCall->line - 1;
+			$line = trim($lines[$fileLine]);
 
 			// Skip opening `(` and get next value, presumably string with message
 			$msgToken = $txCall->next()->next();
@@ -97,18 +110,36 @@ class ContextFiller implements FillerInterface
 
 			if ($ctxToken->is(T_ENCAPSED_AND_WHITESPACE))
 			{
-//				echo 'CTXE: ' . $ctx . PHP_EOL;
+				echo 'CTXE: ' . $ctx . PHP_EOL;
 				continue;
 			}
 			if ($ctxToken->is(T_CONSTANT_ENCAPSED_STRING))
 			{
-//				echo 'CTXC: ' . $ctx . PHP_EOL;
+				echo 'CTXC: ' . $ctx . PHP_EOL;
 				continue;
 			}
-			echo "IN : $file, $txCall->line" . PHP_EOL;
+			$newContext = ClassContext::create($file);
+			if(empty($newContext))
+			{
+				$newContext = Context::create($file);
+			}
+			echo "IN : $file, $txCall->line " . PHP_EOL;
 			echo 'MSG: ' . $msg . PHP_EOL;
-//			echo 'CTX: ' . $ctx . PHP_EOL;
-//			echo $line . PHP_EOL;
+			echo 'CTX: ' . $ctx . PHP_EOL;
+			echo 'NCTX: ' . $newContext . PHP_EOL;
+
+			$newLine = str_replace("$msg", "$msg, '$newContext'", $lines[$fileLine]);
+			$line  = $lines[$fileLine];
+			$lines[$fileLine] = $newLine;
+			if($newLine !== $line)
+			{
+				$write = true;
+			}
+			echo $line . PHP_EOL;
+		}
+		if($write)
+		{
+			file_put_contents($file, implode('', $lines));
 		}
 	}
 

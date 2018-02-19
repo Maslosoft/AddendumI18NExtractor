@@ -7,6 +7,9 @@
  */
 
 namespace Maslosoft\AddendumI18NExtractor\Helpers;
+use function array_values;
+use function preg_replace;
+use function ucwords;
 
 /**
  * Context
@@ -46,7 +49,14 @@ class Context
 
 		// Convert to dots
 		$name = str_replace('/', '.', $name);
-		return $name;
+		// Remove some parts
+
+		$patterns = [
+			'~^src\\.~' => '',
+			'~\\.views\\.~' => '.'
+		];
+		$name = preg_replace(array_keys($patterns), array_values($patterns), $name);
+		return ucwords($name, '.');
 	}
 
 }

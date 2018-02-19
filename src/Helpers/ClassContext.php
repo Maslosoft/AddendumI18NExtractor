@@ -12,7 +12,7 @@ use Maslosoft\Addendum\Builder\DocComment;
 
 /**
  * Context
- *
+ * @deprecated see Maslosoft\Components\I18N\ClassContext
  * @author Piotr Maselkowski <pmaselkowski at gmail.com>
  */
 class ClassContext
@@ -30,6 +30,12 @@ class ClassContext
 	{
 		$doc = new DocComment();
 		$docData = $doc->forFile($file);
+		
+		// No class in file
+		if(empty($docData['namespace']))
+		{
+			return '';
+		}
 		$className = sprintf('%s\\%s', $docData['namespace'], $docData['className']);
 		return self::fromClass($className);
 	}
