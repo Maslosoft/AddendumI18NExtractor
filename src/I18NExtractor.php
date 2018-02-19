@@ -12,12 +12,14 @@
 
 namespace Maslosoft\AddendumI18NExtractor;
 
+use function is_array;
 use Maslosoft\Addendum\Addendum;
 use Maslosoft\Addendum\Utilities\AnnotationUtility;
 use Maslosoft\AddendumI18NExtractor\Helpers\ClassContext;
 use Maslosoft\Cli\Shared\ConfigReader;
 use Maslosoft\EmbeDi\EmbeDi;
 use Maslosoft\MiniView\MiniView;
+use function var_dump;
 
 /**
  * This utility extract i18n labels, descriptions etc.
@@ -120,18 +122,22 @@ class I18NExtractor
 				{
 					$name = $class;
 				}
+				if(is_array($value))
+				{
+					$value = $value[0];
+				}
 				$w = "'";
 				if (strstr($value, "'") !== false)
 				{
 					$w = '"';
 				}
 				$this->file[] = $this->view->render('i18nEntity', [
-					'alias' => $alias,
-					'class' => $class,
-					'name' => $name,
-					'value' => $value,
-					'context' => $context,
-					'w' => $w
+					'alias' => (string) $alias,
+					'class' => (string) $class,
+					'name' => (string) $name,
+					'value' => (string) $value,
+					'context' => (string) $context,
+					'w' => (string) $w
 						], true);
 			}
 		}
