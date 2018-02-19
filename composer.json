@@ -1,6 +1,8 @@
 {
     "name": "maslosoft/addendum-i18n-extractor",
+    "homepage": "https://maslosoft.com/",
     "description": "This utility extract i18n labels, descriptions etc.",
+    "keywords": ["i18n", "annotations", "annotation", "extractor", "context"],
     "require": {
         "maslosoft/miniview": "*",
         "maslosoft/addendum": "*",
@@ -12,19 +14,19 @@
 		 "i18n-extractor"
 	 ],
     "require-dev": {
-        "maslosoft/hedron": "*"
+        "maslosoft/hedron": "*",
+	"codeception/codeception": "^2"
     },
 	"autoload": {
 		"psr-4": {
 			"Maslosoft\\AddendumI18NExtractor\\": "src"
 		}
 	},
-    "license": "New BSD",
+    "license": "BSD-3-Clause",
     "authors": [
         {
             "name": "Peter Maselkowski",
-            "email": "pmaselkowski@gmail.com"
+            "email": "peter@maslosoft.com"
         }
-    ],
-    "minimum-stability": "dev"
+    ]
 }

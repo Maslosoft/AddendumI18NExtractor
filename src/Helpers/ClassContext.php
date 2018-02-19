@@ -30,7 +30,7 @@ class ClassContext
 	{
 		$doc = new DocComment();
 		$docData = $doc->forFile($file);
-		
+
 		// No class in file
 		if(empty($docData['namespace']))
 		{
