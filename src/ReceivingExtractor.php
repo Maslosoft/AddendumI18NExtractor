@@ -1,9 +1,13 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * This software package is licensed under `BSD-3-Clause` license[s].
+ *
+ * @package maslosoft/addendum-i18n-extractor
+ * @license BSD-3-Clause
+ *
+ * @copyright Copyright (c) Peter Maselkowski <peter@maslosoft.com>
+ * @link https://maslosoft.com/
  */
 
 namespace Maslosoft\AddendumI18NExtractor;
