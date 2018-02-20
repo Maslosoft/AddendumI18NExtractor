@@ -1,32 +1,43 @@
 {
-    "name": "maslosoft/addendum-i18n-extractor",
-    "homepage": "https://maslosoft.com/",
-    "description": "This utility extract i18n labels, descriptions etc.",
-    "keywords": ["i18n", "annotations", "annotation", "extractor", "context"],
-    "require": {
-        "maslosoft/miniview": "*",
-        "maslosoft/addendum": "*",
-        "maslosoft/sitcom": "*",
-        "symfony/console": "*",
-        "maslosoft/whitelist": "*"
-    },
-	 "bin": [
-		 "i18n-extractor"
-	 ],
-    "require-dev": {
-        "maslosoft/hedron": "*",
-	"codeception/codeception": "^2"
-    },
-	"autoload": {
-		"psr-4": {
-			"Maslosoft\\AddendumI18NExtractor\\": "src"
-		}
-	},
-    "license": "BSD-3-Clause",
-    "authors": [
-        {
-            "name": "Peter Maselkowski",
-            "email": "peter@maslosoft.com"
-        }
-    ]
+  "name": "maslosoft/addendum-i18n-extractor",
+  "homepage": "https://maslosoft.com/",
+  "description": "This utility extract i18n labels, descriptions etc.",
+  "keywords": [
+    "i18n",
+    "annotations",
+    "annotation",
+    "extractor",
+    "context"
+  ],
+  "require": {
+    "maslosoft/miniview": "*",
+    "maslosoft/addendum": "*",
+    "maslosoft/sitcom": "*",
+    "symfony/console": "*",
+    "maslosoft/whitelist": "*"
+  },
+  "bin": [
+    "i18n-extractor"
+  ],
+  "require-dev": {
+    "maslosoft/hedron": "*",
+    "codeception/codeception": "^2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Maslosoft\\AddendumI18NExtractor\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Maslosoft\\I18NExtractorModels\\": "tests/models"
+    }
+  },
+  "license": "BSD-3-Clause",
+  "authors": [
+    {
+      "name": "Peter Maselkowski",
+      "email": "peter@maslosoft.com"
+    }
+  ]
 }
