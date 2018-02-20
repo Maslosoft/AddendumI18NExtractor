@@ -110,6 +110,11 @@ class I18NExtractor
 		}
 
 		AnnotationUtility::fileWalker($this->i18nAnnotations, [$this, 'walk'], $this->searchPaths);
+
+		// Ensure empty line at and
+		$this->file[] = PHP_EOL;
+
+		// Create path
 		$path = sprintf('%s/annotated-labels.php', $outputPath);
 		file_put_contents($path, implode("\n", $this->file));
 		return $this->file;

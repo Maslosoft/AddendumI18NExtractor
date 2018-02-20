@@ -10,8 +10,11 @@ namespace Maslosoft\AddendumI18NExtractor\Helpers;
 
 
 use function basename;
+use Error;
+use ErrorException;
 use function get_class;
 use function implode;
+use function is_string;
 use Maslosoft\Addendum\Addendum;
 use Maslosoft\Addendum\Collections\MetaAnnotation;
 use Maslosoft\Addendum\Reflection\ReflectionAnnotatedClass;
@@ -23,6 +26,7 @@ use Maslosoft\AddendumI18NExtractor\I18NExtractor;
 use ReflectionClass;
 use function sprintf;
 use function str_replace;
+use function var_dump;
 use function vsprintf;
 
 class AnnotationsExtractor
@@ -45,7 +49,7 @@ class AnnotationsExtractor
 	{
 		$annotations = AnnotationUtility::rawAnnotate($file);
 
-		if(empty($annotations['className']))
+		if (empty($annotations['className']))
 		{
 			return [];
 		}
@@ -53,9 +57,7 @@ class AnnotationsExtractor
 		$fqn = sprintf('%s\\%s', $annotations['namespace'], $annotations['className']);
 		$addendum = Addendum::fly();
 		$addendum->addNamespace(DescriptionAnnotation::Ns);
-		$ra = new ReflectionAnnotatedClass($fqn, $addendum);
-
-		;
+		$ra = new ReflectionAnnotatedClass($fqn, $addendum);;
 
 		$messages = [];
 
@@ -71,13 +73,13 @@ class AnnotationsExtractor
 			self::Field => []
 		];
 
-		foreach($ra->getMethods() as $method)
+		foreach ($ra->getMethods() as $method)
 		{
 			/* @var $method ReflectionAnnotatedMethod */
 			$data[self::Method][$method->name] = $method->getAllAnnotations();
 		}
 
-		foreach($ra->getProperties() as $property)
+		foreach ($ra->getProperties() as $property)
 		{
 			/* @var $property ReflectionAnnotatedProperty */
 			$data[self::Field][$property->name] = $property->getAllAnnotations();
@@ -105,7 +107,7 @@ class AnnotationsExtractor
 
 	/**
 	 * @param MetaAnnotation[] $annotations
-	 * @param string $name
+	 * @param string           $name
 	 * @return \Generator|void
 	 * @throws \ReflectionException
 	 */
@@ -113,16 +115,41 @@ class AnnotationsExtractor
 	{
 		$i = 0;
 		/** @var MetaAnnotation[] $annotations */
-		foreach($annotations as $annotationInstance)
+		foreach ($annotations as $annotation)
 		{
-			$type = preg_replace('~Annotation$~', '', (new ReflectionClass($annotationInstance))->getShortName());
+			$info = (new ReflectionClass($annotation));
+			$type = preg_replace('~Annotation$~', '', $info->getShortName());
 			if (in_array($type, $this->extractor->i18nAnnotations))
 			{
 				$i++;
 
-				$value = (string) $annotationInstance;
+				if($info->hasMethod('__toString'))
+				{
+					// Call __toString manually to avoid errors
+					// when returned value is not string
+					$value = $annotation->__toString();
+					if(empty($value) || !is_string($value))
+					{
+						$value = null;
+					}
+				}
 
-				if(empty($value))
+				// Try string value
+				if (empty($value) && !empty($annotation->value) && is_string($annotation->value))
+				{
+					$value = $annotation->value;
+				}
+
+				// Try first text value from array
+				if (empty($value) && !empty($annotation->value) && is_array($annotation->value))
+				{
+					if (!empty($annotation->value[0]) && is_string($annotation->value[0]))
+					{
+						$value = $annotation->value[0];
+					}
+				}
+
+				if (empty($value))
 				{
 					return;
 				}
@@ -130,6 +157,7 @@ class AnnotationsExtractor
 				// Some annotations can be defined multiple times,
 				// so add integer value to name
 				$params = [
+					$type,
 					$name,
 					$i
 				];
