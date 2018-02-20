@@ -12,7 +12,11 @@
 
 namespace Maslosoft\AddendumI18NExtractor;
 
+use function dirname;
+use function file_exists;
 use function is_array;
+use function is_dir;
+use function is_writable;
 use Maslosoft\Addendum\Addendum;
 use Maslosoft\Addendum\Utilities\AnnotationUtility;
 use Maslosoft\AddendumI18NExtractor\Helpers\AnnotationsExtractor;
@@ -22,6 +26,7 @@ use Maslosoft\Cli\Shared\ConfigReader;
 use Maslosoft\EmbeDi\EmbeDi;
 use Maslosoft\MiniView\MiniView;
 use const PHP_EOL;
+use UnexpectedValueException;
 use function var_dump;
 
 /**
@@ -82,14 +87,29 @@ class I18NExtractor
 	{
 		$this->searchPaths = $searchPaths;
 		$this->file[] = '<?php';
-		AnnotationUtility::fileWalker($this->i18nAnnotations, [$this, 'walk'], $this->searchPaths);
+
 		if (null === $outputPath)
 		{
 			$outputPath = 'generated';
 		}
-		$mask = umask(0);
-		mkdir($outputPath, 0777, true);
-		umask($mask);
+		if(!file_exists($outputPath) && is_writable(dirname($outputPath)))
+		{
+			$mask = umask(0);
+			mkdir($outputPath, 0777, true);
+			umask($mask);
+		}
+
+		if(!is_dir($outputPath))
+		{
+			throw new UnexpectedValueException("Dir $outputPath does not exists and could not be created");
+		}
+
+		if(!is_writable($outputPath))
+		{
+			throw new UnexpectedValueException("Dir $outputPath is not writable");
+		}
+
+		AnnotationUtility::fileWalker($this->i18nAnnotations, [$this, 'walk'], $this->searchPaths);
 		$path = sprintf('%s/annotated-labels.php', $outputPath);
 		file_put_contents($path, implode("\n", $this->file));
 		return $this->file;

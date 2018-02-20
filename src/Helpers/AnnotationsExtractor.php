@@ -13,6 +13,7 @@ use function basename;
 use function get_class;
 use function implode;
 use Maslosoft\Addendum\Addendum;
+use Maslosoft\Addendum\Collections\MetaAnnotation;
 use Maslosoft\Addendum\Reflection\ReflectionAnnotatedClass;
 use Maslosoft\Addendum\Reflection\ReflectionAnnotatedMethod;
 use Maslosoft\Addendum\Reflection\ReflectionAnnotatedProperty;
@@ -102,9 +103,16 @@ class AnnotationsExtractor
 		return $messages;
 	}
 
+	/**
+	 * @param MetaAnnotation[] $annotations
+	 * @param string $name
+	 * @return \Generator|void
+	 * @throws \ReflectionException
+	 */
 	public function extract($annotations, $name)
 	{
 		$i = 0;
+		/** @var MetaAnnotation[] $annotations */
 		foreach($annotations as $annotationInstance)
 		{
 			$type = preg_replace('~Annotation$~', '', (new ReflectionClass($annotationInstance))->getShortName());
@@ -113,6 +121,11 @@ class AnnotationsExtractor
 				$i++;
 
 				$value = (string) $annotationInstance;
+
+				if(empty($value))
+				{
+					return;
+				}
 
 				// Some annotations can be defined multiple times,
 				// so add integer value to name

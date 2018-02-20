@@ -7,8 +7,14 @@ date_default_timezone_set('UTC');
 
 $cwd = getcwd();
 
+if(!defined('YII_DEBUG'))
+{
+    define('YII_DEBUG', true);
+}
+
 // Try existing autoloader first
 $loaders = [
+	$cwd . '/www/index.php',
 	$cwd . '/vendor/autoload.php',
 	__DIR__ . '/vendor/autoload.php',
 	__DIR__ . '/../../autoload.php'
