@@ -2,18 +2,26 @@
 <?php
 
 use Maslosoft\AddendumI18NExtractor\Application\Application;
-use Maslosoft\AddendumI18NExtractor\I18NExtractor;
 
 date_default_timezone_set('UTC');
 
-if (file_exists(__DIR__ . '/vendor/autoload.php'))
+$cwd = getcwd();
+
+// Try existing autoloader first
+$loaders = [
+	$cwd . '/vendor/autoload.php',
+	__DIR__ . '/vendor/autoload.php',
+	__DIR__ . '/../../autoload.php'
+];
+
+foreach ($loaders as $path)
 {
-	require_once(__DIR__ . '/vendor/autoload.php');
-}
-elseif (file_exists(__DIR__ . '/../../autoload.php'))
-{
-	require_once __DIR__ . '/../../autoload.php';
+	if (file_exists($path))
+	{
+		require_once($path);
+		break;
+	}
 }
 
-$app = new Application(new I18NExtractor());
+$app = new Application;
 $app->run();
