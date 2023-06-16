@@ -22,7 +22,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class FillContextCommand extends ConsoleCommand implements AnnotatedInterface
 {
 
-	protected function configure()
+	protected function configure(): void
 	{
 		$this->setName("fill-context");
 		$this->setDescription("Fill empty context in sources");
@@ -35,16 +35,17 @@ EOT;
 		$this->setHelp($help);
 	}
 
-	protected function execute(InputInterface $input, OutputInterface $output)
+	protected function execute(InputInterface $input, OutputInterface $output): int
 	{
 		(new DirectoryContextFiller)->fill();
+		return 1;
 	}
 
 	/**
 	 * @SlotFor(Command)
 	 * @param Command $signal
 	 */
-	public function reactOn(Command $signal)
+	public function reactOn(Command $signal): void
 	{
 		$signal->add($this, 'i18n-extractor');
 	}

@@ -10,10 +10,11 @@
     "context"
   ],
   "require": {
+    "php": ">=8.2",
     "maslosoft/miniview": "*",
     "maslosoft/addendum": "*",
     "maslosoft/sitcom": "*",
-    "symfony/console": "*",
+    "symfony/console": ">=2.7 <7.0",
     "maslosoft/whitelist": "*"
   },
   "bin": [
@@ -21,7 +22,8 @@
   ],
   "require-dev": {
     "maslosoft/hedron": "*",
-    "codeception/codeception": "^2"
+    "codeception/module-asserts": "^3",
+    "codeception/codeception": "^5"
   },
   "autoload": {
     "psr-4": {

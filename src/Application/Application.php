@@ -30,7 +30,7 @@ class Application extends ConsoleApplication
 	 * Logo
 	 * font: slant
 	 */
-	const Logo = <<<LOGO
+	public const Logo = <<<LOGO
     ___________  _   __   ______     __                  __
    /  _<  ( __ )/ | / /  / ____/  __/ /__________ ______/ /_____  _____
    / / / / __  /  |/ /  / __/ | |/_/ __/ ___/ __ `/ ___/ __/ __ \/ ___/
@@ -44,7 +44,7 @@ LOGO;
 		parent::__construct('Addendum I18N Extractor', require __DIR__ . '/../version.php');
 	}
 
-	public function getHelp()
+	public function getHelp(): string
 	{
 		return self::Logo . parent::getHelp();
 	}
@@ -54,7 +54,7 @@ LOGO;
 	 *
 	 * @return Command[] An array of default Command instances
 	 */
-	public function getDefaultCommands()
+	public function getDefaultCommands(): array
 	{
 		$commands = parent::getDefaultCommands();
 
