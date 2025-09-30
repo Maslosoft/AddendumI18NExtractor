@@ -22,7 +22,7 @@ use Maslosoft\AddendumI18NExtractor\Interfaces\ExtractorInterface;
 class DirectoryExtractor implements ExtractorInterface
 {
 
-	public function extract($src = 'src', $dest = 'generated')
+	public function extract($src = 'src', $dest = 'generated'): void
 	{
 		$extractor = new I18NExtractor();
 		$extractor->generate([$src], $dest);

@@ -24,7 +24,7 @@ class ExtractI18N implements SignalInterface
 	 * Annotations to search for.
 	 * @var string[]
 	 */
-	public $annotations = [
+	public array $annotations = [
 		'Label',
 		'Description'
 	];
@@ -33,12 +33,12 @@ class ExtractI18N implements SignalInterface
 	 * Path for searching for I18N annotations
 	 * @var string
 	 */
-	public $srcPath = '';
+	public string $srcPath = '';
 
 	/**
 	 * Generated php file path
 	 * @var string
 	 */
-	public $destPath = '';
+	public string $destPath = '';
 
 }

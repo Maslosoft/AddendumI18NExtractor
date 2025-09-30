@@ -33,16 +33,16 @@ use function str_replace;
 class ContextFiller implements FillerInterface
 {
 
-	private $searchPaths = [];
+	private array $searchPaths = [];
 
-	public function fill($searchPaths = [])
+	public function fill($searchPaths = []): void
 	{
 		$this->searchPaths = $searchPaths;
 
 		FileWalker::scan([$this, 'walk'], $this->searchPaths);
 	}
 
-	public function walk($file, $content)
+	public function walk($file, $content): void
 	{
 		$context = Context::create($file, $this->searchPaths);
 		$tokenizer = new Tokenizer($content);
@@ -64,7 +64,7 @@ class ContextFiller implements FillerInterface
 		/* @var $txCalls[] TokenInterface */
 		foreach ($functions as $function)
 		{
-			if (in_array($function->value, array_keys($txFunctions)))
+			if (array_key_exists($function->value, $txFunctions))
 			{
 				$txCalls[] = $function;
 			}

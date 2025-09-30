@@ -42,11 +42,13 @@ class I18NExtractor
 	 */
 	const ConfigName = "i18n-extractor";
 
+	protected EmbeDi $di;
+
 	/**
 	 * View Renderer
 	 * @var MiniView
 	 */
-	public $view = null;
+	public MiniView $view;
 
 	public $i18nAnnotations = [
 		'Label',

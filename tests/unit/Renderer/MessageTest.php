@@ -1,16 +1,18 @@
 <?php
 namespace Renderer;
 
+use Codeception\Test\Unit;
+use UnitTester;
 use function codecept_debug;
 use Maslosoft\AddendumI18NExtractor\Helpers\MessageRenderer;
 use Maslosoft\AddendumI18NExtractor\I18NExtractor;
 use Maslosoft\I18NExtractorModels\ModelWithClassLabel;
 use ReflectionClass;
 
-class MessageTest extends \Codeception\Test\Unit
+class MessageTest extends Unit
 {
     /**
-     * @var \UnitTester
+     * @var UnitTester
      */
     protected $tester;
     
@@ -34,7 +36,7 @@ class MessageTest extends \Codeception\Test\Unit
 		codecept_debug($message);
 
 		$this->assertNotEmpty($message);
-		$this->assertContains('Test', $message);
-		$this->assertContains('$varName', $message);
+		$this->assertStringContainsString('Test', $message);
+		$this->assertStringContainsString('$varName', $message);
 	}
 }

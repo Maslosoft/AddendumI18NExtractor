@@ -25,11 +25,11 @@ class Context
 
 	/**
 	 * Create context based on file name
-	 * @param string $file
+	 * @param string   $file
 	 * @param string[] $trimPaths
 	 * @return string
 	 */
-	public static function create($file, $trimPaths = [])
+	public static function create(string $file, array $trimPaths = []): string
 	{
 		// Replace windows slashes
 		$file = str_replace('\\', '/', $file);
@@ -40,7 +40,7 @@ class Context
 		// Remove search paths in from of file path
 		foreach ($trimPaths as $path)
 		{
-			$pathQuoted = preg_quote($path);
+			$pathQuoted = preg_quote($path, '~');
 			$pattern = "~^$pathQuoted/~";
 			if (preg_match($pattern, $name))
 			{

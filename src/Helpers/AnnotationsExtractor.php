@@ -31,8 +31,8 @@ use function vsprintf;
 
 class AnnotationsExtractor
 {
-	const Method = 'method';
-	const Field = 'field';
+	public const Method = 'method';
+	public const Field = 'field';
 
 	/**
 	 * Extractor instance
@@ -45,7 +45,7 @@ class AnnotationsExtractor
 		$this->extractor = $extractor;
 	}
 
-	public function getMessages($file)
+	public function getMessages($file): array
 	{
 		$annotations = AnnotationUtility::rawAnnotate($file);
 

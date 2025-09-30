@@ -14,14 +14,13 @@
     "maslosoft/miniview": "*",
     "maslosoft/addendum": "*",
     "maslosoft/sitcom": "*",
-    "symfony/console": ">=2.7 <7.0",
+    "symfony/console": ">=7",
     "maslosoft/whitelist": "*"
   },
   "bin": [
     "i18n-extractor"
   ],
   "require-dev": {
-    "maslosoft/hedron": "*",
     "codeception/module-asserts": "^3",
     "codeception/codeception": "^5"
   },

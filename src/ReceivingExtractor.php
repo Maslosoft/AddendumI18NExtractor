@@ -24,7 +24,7 @@ use Maslosoft\Signals\Signal;
 class ReceivingExtractor implements ExtractorInterface
 {
 
-	public function extract()
+	public function extract(): void
 	{
 		$signals = (new Signal)->emit(new ExtractI18N);
 

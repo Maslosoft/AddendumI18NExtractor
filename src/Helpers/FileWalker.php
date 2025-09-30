@@ -39,7 +39,7 @@ class FileWalker
 	 *
 	 * @param callback $callback
 	 */
-	public static function scan($callback, $searchPaths = [])
+	public static function scan(callable $callback, $searchPaths = []): void
 	{
 		foreach ($searchPaths as $path)
 		{
@@ -59,7 +59,7 @@ class FileWalker
 					// TODO Log this
 					continue;
 				}
-				call_user_func($callback, $file, $contents);
+				$callback($file, $contents);
 			}
 		}
 	}

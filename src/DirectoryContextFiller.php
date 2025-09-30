@@ -22,7 +22,7 @@ use Maslosoft\AddendumI18NExtractor\Interfaces\FillerInterface;
 class DirectoryContextFiller implements FillerInterface
 {
 
-	public function fill($src = 'src')
+	public function fill($src = 'src'): void
 	{
 		$extractor = new ContextFiller();
 		$extractor->fill([$src]);
